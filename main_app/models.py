@@ -10,6 +10,13 @@ class Profile(models.Model):
     bio = models.TextField(default='One of Us')
 
 
-class App(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.CharField
+# class App(models.Model):
+#     name = models.CharField(max_length=100)
+#     description = models.CharField(max_length=500)
+#     tech = models.ManyToManyField(Technologie)
+#     users = models.ManyToManyField(User)
+
+#     def __str__(self):
+#         return self.name
+
+
