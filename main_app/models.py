@@ -7,7 +7,17 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.TextField(default='https://t4america.org/wp-content/uploads/2016/10/Blank-User.jpg')
-    bio = models.TextField(default='One of Us')
+    bio = models.TextField(default='Hitting The Code Hard!')
+
+
+class Technologie(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    
+    # def get_absolute_url(self):
+    #     return reverse('technologies_detail', kwargs={% 'pk': self.id %})
 
 
 # class App(models.Model):

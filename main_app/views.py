@@ -8,7 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 # Import the mixin for class-based views
 # # Create your views here.
-# from .models import App, Profile, Note, Build_stat, Technologie
+from .models import Profile
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserForm
 
 
@@ -30,7 +31,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
-      return redirect('home')
+      return redirect('profiles_create')
     #   COME BACK AND CHANGE REDIRECT LOCATION
     else:
       error_message = 'Invalid sign up - try again'
@@ -40,7 +41,20 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
-# class AppList(ListView):
+def technologies_index(request):
+  tech = Technologie.objects.all()
+  return render(request, '')
+
+class ProfileCreate(LoginRequiredMixin, CreateView):
+  model = Profile
+  fields = ['photo', 'bio']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+  success_url = '/'
+
+#  class AppList(ListView):
 #     model = App
 
 # class AppCreate(CreateView):

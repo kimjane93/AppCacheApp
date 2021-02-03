@@ -16,6 +16,11 @@
                   <ul>
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
+
+
+                  {#  <li><a href="{% url '' %}"></a></li> #}
+
+
                     {# <li><a href="{% url 'index' %}">View All Apps</a></li> #}
                     {# <li><a href="{% url 'apps_create' %}">Create An App</a></li> #}
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
