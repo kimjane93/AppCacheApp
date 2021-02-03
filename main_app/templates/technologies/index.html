@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Tech List</h1>
+<span>Don't see a certaim framework or library? Go <a href="{% url 'tech_create' %}">Add Some Tech</a></span>
+{% if tech.count %}
+<div>
+    {% for tech in tech %}
+    <div>
+        <div>
+            <h4>{{tech.name}}</h4>
+        </div>
+        <a href="{{tech.docs}}">Learn About Me</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<h3>Go Add Some Tech To Build Our Apps Around!</h3>
+{% endif %}
+
+{% endblock %}

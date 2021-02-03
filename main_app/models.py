@@ -12,12 +12,10 @@ class Profile(models.Model):
 
 class Technologie(models.Model):
     name = models.CharField(max_length=50)
-
+    docs = models.CharField(max_length=250, default='Google It')
+    
     def __str__(self):
         return self.name
-    
-    # def get_absolute_url(self):
-    #     return reverse('technologies_detail', kwargs={% 'pk': self.id %})
 
 
 # class App(models.Model):
