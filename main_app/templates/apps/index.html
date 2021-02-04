@@ -21,7 +21,7 @@
                 {% endfor %}
             </ul>
         </div>
-      <form action="{% url 'assoc_user' app.id user.id %}" method="post">
+      <form action="{% url 'assoc_user' app.id %}" method="post">
             {% csrf_token %}
             <button type="submit">
                 Add This App To Your List!

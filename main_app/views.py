@@ -74,6 +74,6 @@ def apps_index(request):
   print(apps)
   return render(request, 'apps/index.html', {'apps': apps})
 
-# class AppCreate(CreateView):
-#     model = App
-#     fields = ['name', 'description', 'technologies']
+def assoc_user(request, app_id):
+  App.objects.get(id=app_id).users.add(request.user)
+  return redirect('apps_index')
