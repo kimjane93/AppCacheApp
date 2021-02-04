@@ -55,6 +55,7 @@ class Note(models.Model):
 class BuildLink(models.Model):
     name = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    app = models.ForeignKey(App, on_delete=models.CASCADE)
     link = models.CharField(max_length=200, default='')
 
     def __str__(self):
