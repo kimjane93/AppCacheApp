@@ -67,10 +67,12 @@ class AppCreate(LoginRequiredMixin, CreateView):
     self.object = form.save()
     App.objects.get(id=self.object.id).users.add(self.request.user)
   
-    return redirect('/tech/')
+    return redirect('/apps/')
 
-#  class AppList(ListView):
-#     model = App
+def apps_index(request):
+  apps = App.objects.exclude(users__exact=request.user)
+  print(apps)
+  return render(request, 'apps/index.html', {'apps': apps})
 
 # class AppCreate(CreateView):
 #     model = App
