@@ -1,1 +1,24 @@
-<h1>USERS</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Fellow Coders</h1>
+
+<div>
+    {% for user in users %}
+    <div>
+        <div>
+            <img src="{{user.profile.photo}}" height="150px" alt="">
+            <h1>{{ user.first_name }}</h1>
+        </div>
+        <div>
+            {{user.profile.bio}}
+            Year Joined: {{user.date_joined.year}}
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
