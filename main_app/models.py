@@ -8,6 +8,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.TextField(default='https://t4america.org/wp-content/uploads/2016/10/Blank-User.jpg')
     bio = models.TextField(default='Hitting The Code Hard!')
+    github = models.CharField(max_length=200, default='')
+    linkedin = models.CharField(max_length=200, default='')
 
 
 class Technologie(models.Model):
@@ -48,4 +50,13 @@ class Note(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{user.first_name} posted {self.message} on {self.date}"
+        return f"{self.user.first_name} posted {self.message} on {self.date}"
+
+class BuildLink(models.Model):
+    name = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    link = models.CharField(max_length=200, default='')
+
+    def __str__(self):
+        return f"{self.name} linked by {self.user.id}"
+
