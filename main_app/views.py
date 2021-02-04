@@ -8,10 +8,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 # Import the mixin for class-based views
 # # Create your views here.
-from .models import Profile, Technologie
+from .models import Profile, Technologie, App, User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserForm
-
+# from django.contrib.auth.models import User
 
 
 def home(request):
@@ -59,6 +59,15 @@ class TechnologieCreate(LoginRequiredMixin, CreateView):
   fields = '__all__'
   success_url = '/tech/'
 
+class AppCreate(LoginRequiredMixin, CreateView):
+  model = App
+  fields = ['name', 'description']
+
+  def form_valid(self, form):
+    self.object = form.save()
+    App.objects.get(id=self.object.id).users.add(self.request.user)
+  
+    return redirect('/tech/')
 
 #  class AppList(ListView):
 #     model = App

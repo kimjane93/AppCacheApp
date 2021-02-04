@@ -18,13 +18,27 @@ class Technologie(models.Model):
         return self.name
 
 
-# class App(models.Model):
-#     name = models.CharField(max_length=100)
-#     description = models.CharField(max_length=500)
-#     tech = models.ManyToManyField(Technologie)
-#     users = models.ManyToManyField(User)
+# BUILD_STATUS = (
+#     ('B', 'Built'),
+#     ('NB', 'Not Built')
+# )
 
-#     def __str__(self):
-#         return self.name
+#  # build_stat = models.CharField(
+#     #     max_length=2,
+#     #     choices=BUILD_STATUS,
+#     #     default=BUILD_STATUS[1][0]
+#     # )
 
+class App(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    tech = models.ManyToManyField(Technologie)
+    users = models.ManyToManyField(User)
+
+
+    def __str__(self):
+        return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse('apps_detail', kwargs={'app_id': self.id})
 
