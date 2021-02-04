@@ -14,4 +14,5 @@ urlpatterns = [
     path('apps/<int:app_id>/assoc_user/', views.assoc_user, name='assoc_user'),
     path('apps/<int:app_id>/', views.apps_detail, name='apps_detail'),
     path('apps/<int:app_id>/addnote', views.apps_addnote, name='apps_addnote'),
+     path('accounts/users/', views.users_index, name='users_index'),
 ]

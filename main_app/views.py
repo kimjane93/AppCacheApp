@@ -40,6 +40,9 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+def users_index(request):
+  users = User.objects.exclude(id=request.user.id)
+  return render(request, 'accounts/index.html', {'users': users})
 
 def technologies_index(request):
   tech = Technologie.objects.all()
@@ -92,3 +95,4 @@ def apps_addnote(request, app_id):
     new_note.user_id = request.user.id
     new_note.save()
   return redirect('apps_detail', app_id=app_id)
+
