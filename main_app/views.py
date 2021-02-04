@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 # import uuid
@@ -12,6 +12,8 @@ from .models import Profile, Technologie, App, User, Note
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserForm, NoteForm
 # from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+
 
 
 def home(request):
@@ -83,7 +85,8 @@ def apps_index(request):
 
 def assoc_user(request, app_id):
   App.objects.get(id=app_id).users.add(request.user)
-  return redirect('apps_index')
+  # return HttpResponseRedirect(reverse('*args'))
+  return redirect('apps_detail', app_id=app_id)
 
 def apps_detail(request, app_id):
   app = App.objects.get(id=app_id)

@@ -36,6 +36,7 @@
                 
 
             </div>
+            {% if app.note_set.count %}
         <table class="striped">
             <thead>
               <tr><th>Notes:</th><th>Date Posted</th><th>Posted By</th></tr>
@@ -50,6 +51,9 @@
                 {% endfor %}
             </tbody>
           </table>
+          {% else %}
+          <h4>No Notes On This Build Idea Yet</h4>
+          {% endif %}
         </div>
     </div>
 </div>
