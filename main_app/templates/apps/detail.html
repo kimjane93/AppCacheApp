@@ -27,18 +27,27 @@
         </div>
         <div>
             <div>
+                <h1>Add Note</h1>
+                <form action="{% url 'apps_addnote' app.id %}" method="post">
+                    {% csrf_token %}
+                    {{note_form.message}}
+                    <input type="submit" value="Add Note">
+                </form>
+                
 
             </div>
         <table class="striped">
             <thead>
-              <tr><th>Notes:</th></tr>
+              <tr><th>Notes:</th><th>Date Posted</th><th>Posted By</th></tr>
             </thead>
             <tbody>
-              
+              {% for note in app.note_set.all %}
                 <tr>
-                  <td></td>
-                  <td></td>
+                  <td>{{note.message}}</td>
+                  <td>{{note.date}}</td>
+                  <td>{{note.user.first_name}}</td>
                 </tr>
+                {% endfor %}
             </tbody>
           </table>
         </div>

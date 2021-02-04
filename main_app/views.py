@@ -8,9 +8,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 # Import the mixin for class-based views
 # # Create your views here.
-from .models import Profile, Technologie, App, User
+from .models import Profile, Technologie, App, User, Note
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import UserForm
+from .forms import UserForm, NoteForm
 # from django.contrib.auth.models import User
 
 
@@ -80,7 +80,15 @@ def assoc_user(request, app_id):
 
 def apps_detail(request, app_id):
   app = App.objects.get(id=app_id)
+  note_form = NoteForm()
   return render(request, 'apps/detail.html', {
-    'app': app})
+    'app': app, 'note_form': note_form})
 
-# def apps_addnote(request, app_id)
+def apps_addnote(request, app_id):
+  form = NoteForm(request.POST)
+  if form.is_valid():
+    new_note = form.save(commit=False)
+    new_note.app_id = app_id
+    new_note.user_id = request.user.id
+    new_note.save()
+  return redirect('apps_detail', app_id=app_id)
