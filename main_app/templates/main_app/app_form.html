@@ -9,9 +9,18 @@
 {% endif %}
 <form action="" method="post">
     {% csrf_token %}
-    <table>
-        {{form.as_table}}
-    </table>
+    <div>
+        <!-- {{form.as_table}} -->
+        <p>Name: {{form.name}}</p>
+        <p>Description: {{form.description}}</p>
+        <p>Tech: </p>
+        <div>
+            {{form.tech}}
+        </div>
+        <p>*Hold down Cmd or Ctrl to select multiple!</p>
+        
+    </div>
+
     <input type="submit" value="Submit!" class="btn">
 </form>
 

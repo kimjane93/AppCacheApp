@@ -35,7 +35,6 @@ class App(models.Model):
     tech = models.ManyToManyField(Technologie)
     users = models.ManyToManyField(User)
 
-
     def __str__(self):
         return self.name
 

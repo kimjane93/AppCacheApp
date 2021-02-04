@@ -61,7 +61,7 @@ class TechnologieCreate(LoginRequiredMixin, CreateView):
 
 class AppCreate(LoginRequiredMixin, CreateView):
   model = App
-  fields = ['name', 'description']
+  fields = ['name', 'description', 'tech']
 
   def form_valid(self, form):
     self.object = form.save()
