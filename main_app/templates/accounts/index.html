@@ -15,7 +15,9 @@
             {{user.profile.bio}}
             Year Joined: {{user.date_joined.year}}
         </div>
-        
+        <form action="{% url 'users_detail' user.id %}">
+            <button type="submit">Profile</button>
+        </form>
     </div>
     {% endfor %}
 </div>

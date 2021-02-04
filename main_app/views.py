@@ -44,6 +44,10 @@ def users_index(request):
   users = User.objects.exclude(id=request.user.id)
   return render(request, 'accounts/index.html', {'users': users})
 
+def users_detail(request, user_id):
+  user = User.objects.get(id=user_id)
+  return render(request, 'accounts/detail.html', {'user': user})
+
 def technologies_index(request):
   tech = Technologie.objects.all()
   return render(request, 'technologies/index.html', {'tech': tech})
