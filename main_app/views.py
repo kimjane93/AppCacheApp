@@ -78,5 +78,9 @@ def assoc_user(request, app_id):
   App.objects.get(id=app_id).users.add(request.user)
   return redirect('apps_index')
 
-class AppDetail(DetailView):
-  model = App
+def apps_detail(request, app_id):
+  app = App.objects.get(id=app_id)
+  return render(request, 'apps/detail.html', {
+    'app': app})
+
+# def apps_addnote(request, app_id)
