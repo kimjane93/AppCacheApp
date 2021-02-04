@@ -11,5 +11,6 @@ urlpatterns = [
     path('tech/create', views.TechnologieCreate.as_view(), name='tech_create'),
     path('apps/create', views.AppCreate.as_view(), name='apps_create'),
     path('apps/', views.apps_index, name='apps_index'),
-    path('apps/<int:app_id>/assoc_user/', views.assoc_user, name='assoc_user')
+    path('apps/<int:app_id>/assoc_user/', views.assoc_user, name='assoc_user'),
+    path('apps/<int:pk>/', views.AppDetail.as_view(), name='apps_detail')
 ]

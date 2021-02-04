@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>App Ideas</h1>
-<span>Don't see one that speaks to you? Go <a href="{% url 'apps_create' %}">Create An App!</a></span>
-
 <div>
-    {% for app in apps %}
     <div>
         <div>
             <h1>{{ app.name }}</h1>
+        </div>
+        <div>
+            <p>{{app.description}}</p>
         </div>
         <div>
             <ul>
@@ -18,17 +16,16 @@
                 {% endfor %}
             </ul>
         </div>
-        <form action="{% url 'apps_detail' app.id %}">
-            <button type="submit">Details</button>
-        </form>
       <form action="{% url 'assoc_user' app.id %}" method="post">
             {% csrf_token %}
             <button type="submit">
                 Add This App To Your List!
             </button>
         </form> 
+        <div>
+            <a href="{% url 'apps_index' %}">Return To Index</a>
+        </div>
     </div>
-    {% endfor %}
 </div>
 
 
