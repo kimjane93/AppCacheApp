@@ -41,3 +41,11 @@ class App(models.Model):
     # def get_absolute_url(self):
     #     return reverse('apps_detail', kwargs={'app_id': self.id})
 
+class Note(models.Model):
+    date = models.DateField(auto_now_add=True)
+    message = models.TextField()
+    app = models.ForeignKey(App, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{user.first_name} posted {self.message} on {self.date}"
