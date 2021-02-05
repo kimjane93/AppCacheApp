@@ -17,6 +17,7 @@
         </div>
         <a href="{% url 'users_index' %}">Connect With Other Coders!</a>
         <div>
+            {% if user.app_set.all %}
             <table class="striped">
                 <h1>Build List</h1>
                 <thead>
@@ -40,5 +41,8 @@
         </div>
     </div>
     {% endfor %}
+    {% else %}
+    <h4>Go <a href="{% url 'apps_create' %}">Create Some App Ideas</a> or <a href="{% url 'apps_index' %}">Steal Some Ideas From Other Coders!</a></h4>
+    {% endif %}
 </div>
 {% endblock %}

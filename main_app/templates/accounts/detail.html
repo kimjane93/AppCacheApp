@@ -17,6 +17,7 @@
         </div>
         <a href="{% url 'users_index' %}">Return To All Coders</a>
         <div>
+            {% if user.app_set.all %}
             <table class="striped">
                 <h1>Build List</h1>
                 <thead>
@@ -40,5 +41,8 @@
         </div>
     </div>
     {% endfor %}
+    {% else %}
+    <h4>They don't have any apps on their agenda, why not check out the <a href="{% url 'apps_index' %}">App Cache!</a></h4>
+    {% endif %}
 </div>
 {% endblock %}
