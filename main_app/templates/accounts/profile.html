@@ -15,7 +15,7 @@
                 <a href="{{ user.profile.github }}" target="blank" >Github</a>
             </div>
         </div>
-        <a href="{% url 'users_index' %}">Return To All Coders</a>
+        <a href="{% url 'users_index' %}">Connect With Other Coders!</a>
         <div>
             <table class="striped">
                 <h1>Build List</h1>
@@ -32,7 +32,7 @@
                           <p>{{tech.name}}</p>
                       </td>
                       <td>{{app.users.count}}</td>
-                      <td><a href="{% url 'assoc_user' app.id %}">Add Build Idea To Collection</a></td>
+                      <td><a href="{% url 'disassoc_user' app.id %}">Add Build Idea To Collection</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

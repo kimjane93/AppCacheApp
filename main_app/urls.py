@@ -17,6 +17,7 @@ urlpatterns = [
     path('accounts/users/', views.users_index, name='users_index'),
     path('accounts/<int:user_id>/', views.users_detail, name='users_detail'),
     path('accounts/profile/', views.profile, name='profile'),
+    path('apps/<int:app_id>/disassoc_user/', views.disassoc_user, name='disassoc_user'),
 
 
 ]
