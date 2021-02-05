@@ -14,7 +14,7 @@ class Profile(models.Model):
 
 class Technologie(models.Model):
     name = models.CharField(max_length=50)
-    docs = models.CharField(max_length=250, default='Google It')
+    docs = models.CharField(max_length=250, default='https://google.com/')
     
     def __str__(self):
         return self.name
@@ -32,6 +32,7 @@ class Technologie(models.Model):
 #     # )
 
 class App(models.Model):
+    creator = models.IntegerField()
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     tech = models.ManyToManyField(Technologie)

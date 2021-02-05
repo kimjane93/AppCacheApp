@@ -80,9 +80,10 @@ class AppCreate(LoginRequiredMixin, CreateView):
   fields = ['name', 'description', 'tech']
 
   def form_valid(self, form):
+    self.object = form.save(commit=False)
+    self.object.creator = self.request.user.id
     self.object = form.save()
     App.objects.get(id=self.object.id).users.add(self.request.user)
-  
     return redirect('/apps/')
 
 def apps_index(request):
@@ -97,8 +98,9 @@ def assoc_user(request, app_id):
 def apps_detail(request, app_id):
   app = App.objects.get(id=app_id)
   note_form = NoteForm()
+  creator = User.objects.get(id=app.creator)
   return render(request, 'apps/detail.html', {
-    'app': app, 'note_form': note_form})
+    'app': app, 'note_form': note_form, 'creator': creator})
 
 def apps_addnote(request, app_id):
   form = NoteForm(request.POST)
