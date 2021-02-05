@@ -56,7 +56,7 @@ def technologies_index(request):
 
 class ProfileCreate(LoginRequiredMixin, CreateView):
   model = Profile
-  fields = ['photo', 'bio']
+  fields = ['photo', 'bio', 'linkedin', 'github']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -103,3 +103,6 @@ def apps_addnote(request, app_id):
     new_note.save()
   return redirect('apps_detail', app_id=app_id)
 
+def profile(request):
+  user = User.objects.get(id=request.user.id)
+  return render(request, 'accounts/profile.html', {'user': user})
