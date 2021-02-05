@@ -106,3 +106,8 @@ def apps_addnote(request, app_id):
 def profile(request):
   user = User.objects.get(id=request.user.id)
   return render(request, 'accounts/profile.html', {'user': user})
+
+def disassoc_user(request, app_id):
+  app = App.objects.get(id=app_id)
+  app.users.remove(request.user.id)
+  return redirect('profile')
