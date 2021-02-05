@@ -11,13 +11,16 @@
             {{user.profile.bio}}
             You Joined Appcache In {{user.date_joined.year}}
             <div>
-                <a href="{{ user.profile.linkedin }}" target="blank" >Linkedin</a>
-                <a href="{{ user.profile.github }}" target="blank" >Github</a>
+                <a href="{{ user.profile.linkedin }}" target="_blank" >Linkedin</a>
+                <a href="{{ user.profile.github }}" target="_blank" >Github</a>
             </div>
             <a href="{% url 'profiles_update' user.profile.id %}">Update Your Profile</a>
         </div>
         <a href="{% url 'users_index' %}">Connect With Other Coders!</a>
         <div>
+            <div>
+                
+            </div>
             {% if user.app_set.all %}
             <table class="striped">
                 <h1>Build List</h1>

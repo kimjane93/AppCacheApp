@@ -8,7 +8,7 @@
         </div>
         <div>
             <p>{{app.description}}</p>
-            <p>{{creator.first_name}}</p>
+            <p>Coder who created this App Idea: <a href="{% url 'users_detail' creator.id %}">{{creator.first_name}}</a></p>
         </div>
         <div>
             <ul>
@@ -27,6 +27,13 @@
             <a href="{% url 'apps_index' %}">Return To Index</a>
         </div>
         <div>
+            <form action="{% url 'apps_addlink' app.id %}" method="post">
+                {% csrf_token %}
+                {{ buildlink_form.as_table }}
+                <input type="submit" value="Add A Link To Your Finished Build!">
+            </form>
+        </div>
+        <div>
             <div>
                 <h1>Add Note</h1>
                 <form action="{% url 'apps_addnote' app.id %}" method="post">
@@ -34,7 +41,6 @@
                     {{note_form.message}}
                     <input type="submit" value="Add Note">
                 </form>
-                
 
             </div>
             {% if app.note_set.count %}
@@ -47,7 +53,7 @@
                 <tr>
                   <td>{{note.message}}</td>
                   <td>{{note.date}}</td>
-                  <td>{{note.user.first_name}}</td>
+                  <td><a href="{% url 'users_detail' note.user.id %}">{{note.user.first_name}}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -55,6 +61,25 @@
           {% else %}
           <h4>No Notes On This Build Idea Yet</h4>
           {% endif %}
+        </div>
+        <div>
+            {% if app.buildlink_set.count %}
+            <table class="striped">
+                <thead>
+                  <tr><th>Built Apps</th><th>Posted By</th></tr>
+                </thead>
+                <tbody>
+                  {% for link in app.buildlink_set.all %}
+                    <tr>
+                      <td><a href="{{link.link}}" target="_blank">{{link.name}}</a></td>
+                      <td><a href="{% url 'users_detail' link.user.id %}">{{link.user.first_name}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <h4>No Builds Yet, Give It A Go!</h4>
+              {% endif %}
         </div>
     </div>
 </div>

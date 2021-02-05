@@ -8,9 +8,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 # Import the mixin for class-based views
 # # Create your views here.
-from .models import Profile, Technologie, App, User, Note
+from .models import Profile, Technologie, App, User, Note, BuildLink
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import UserForm, NoteForm
+from .forms import UserForm, NoteForm, BuildLinkForm
 # from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
@@ -98,9 +98,19 @@ def assoc_user(request, app_id):
 def apps_detail(request, app_id):
   app = App.objects.get(id=app_id)
   note_form = NoteForm()
+  buildlink_form = BuildLinkForm()
   creator = User.objects.get(id=app.creator)
   return render(request, 'apps/detail.html', {
-    'app': app, 'note_form': note_form, 'creator': creator})
+    'app': app, 'note_form': note_form, 'buildlink_form': buildlink_form, 'creator': creator})
+
+def apps_addlink(request, app_id):
+  form = BuildLinkForm(request.POST)
+  if form.is_valid():
+    new_buildlink = form.save(commit=False)
+    new_buildlink.app_id = app_id
+    new_buildlink.user_id = request.user.id
+    new_buildlink.save()
+  return redirect('apps_detail', app_id=app_id)
 
 def apps_addnote(request, app_id):
   form = NoteForm(request.POST)

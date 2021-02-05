@@ -61,4 +61,3 @@ class BuildLink(models.Model):
 
     def __str__(self):
         return f"{self.name} linked by {self.user.id}"
-
