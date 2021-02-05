@@ -47,8 +47,9 @@ def users_index(request):
   return render(request, 'accounts/index.html', {'users': users})
 
 def users_detail(request, user_id):
-  user = User.objects.get(id=user_id)
-  return render(request, 'accounts/detail.html', {'user': user})
+  current_user = User.objects.get(id=user_id)
+  apps_you_dont_have = App.objects.exclude(users__exact=request.user)
+  return render(request, 'accounts/detail.html', {'current_user': current_user, 'apps_you_dont_have': apps_you_dont_have})
 
 def technologies_index(request):
   tech = Technologie.objects.all()
@@ -91,7 +92,6 @@ def apps_index(request):
 
 def assoc_user(request, app_id):
   App.objects.get(id=app_id).users.add(request.user)
-  # return HttpResponseRedirect(reverse('*args'))
   return redirect('apps_detail', app_id=app_id)
 
 def apps_detail(request, app_id):
