@@ -61,7 +61,13 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
-  success_url = '/'
+  success_url = '/accounts/profile/'
+
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+  model = Profile
+  fields = ['photo', 'bio', 'github', 'linkedin']
+  success_url='/accounts/profile/'
+
 
 class TechnologieCreate(LoginRequiredMixin, CreateView):
   model = Technologie
@@ -111,3 +117,4 @@ def disassoc_user(request, app_id):
   app = App.objects.get(id=app_id)
   app.users.remove(request.user.id)
   return redirect('profile')
+

@@ -18,6 +18,6 @@ urlpatterns = [
     path('accounts/<int:user_id>/', views.users_detail, name='users_detail'),
     path('accounts/profile/', views.profile, name='profile'),
     path('apps/<int:app_id>/disassoc_user/', views.disassoc_user, name='disassoc_user'),
-
+    path('accounts/<int:pk>/update', views.ProfileUpdate.as_view(), name='profiles_update'),
 
 ]
