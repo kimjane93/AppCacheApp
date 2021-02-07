@@ -3,6 +3,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
     padding-top: 70px; 
+    align-items: center;
   }
   
   main {
@@ -19,6 +20,10 @@ body {
 
 .card-list>div {
     margin: 5%;
+}
+
+h1{
+    text-align: center;
 }
 
 

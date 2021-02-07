@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -7,21 +8,15 @@
 {% else %}
 <h1>Create An App Idea</h1>
 {% endif %}
+<div>
 <form action="" method="post">
     {% csrf_token %}
     <div>
-        <!-- {{form.as_table}} -->
-        <p>Name: {{form.name}}</p>
-        <p>Description: {{form.description}}</p>
-        <p>Tech: </p>
-        <div>
-            {{form.tech}}
-        </div>
-        <p>*Hold down Cmd or Ctrl to select multiple!</p>
-        
+            {{form|crispy}}
+            <p>*Hold CMD or CTRL to select multiple tech specs</p>
     </div>
-
-    <input type="submit" value="Submit!" class="btn">
+    <button type="submit" value="Submit!" class="btn btn-secondary">Add It To The Cache</button>
 </form>
+</div>
 
 {% endblock %}

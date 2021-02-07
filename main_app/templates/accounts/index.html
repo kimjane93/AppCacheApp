@@ -2,25 +2,23 @@
 
 {% block content %}
 
+<div class="page-top">
 <h1>Fellow Coders</h1>
-
-<div>
-    {% for user in users %}
-    <div>
-        <div>
-            <img src="{{user.profile.photo}}" height="150px" alt="">
-            <h1>{{ user.first_name }}</h1>
-        </div>
-        <div>
-            {{user.profile.bio}}
-            Year Joined: {{user.date_joined.year}}
-        </div>
-        <form action="{% url 'users_detail' user.id %}">
-            <button type="submit">Profile</button>
-        </form>
-    </div>
-    {% endfor %}
 </div>
 
+<div class="card-list">
+    {% for user in users %}
+<div class="card shadow" style="width: 18rem;">
+    <img src="{{ user.profile.photo }}" class="card-img-top" alt="user associated headshot">
+    <div class="card-body">
+      <h5 class="card-title">{{user.first_name}}</h5>
+      <p class="card-text">Year Joined: {{user.date_joined.year}}</p>
+      <form action="{% url 'users_detail' user.id %}">
+        <button type="submit" class="btn btn-secondary">Profile</button>
+    </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
