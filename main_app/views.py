@@ -88,8 +88,8 @@ class AppCreate(LoginRequiredMixin, CreateView):
 
 def apps_index(request):
   apps = App.objects.exclude(users__exact=request.user)
-  print(apps)
-  return render(request, 'apps/index.html', {'apps': apps})
+  tech = Technologie.objects.all()
+  return render(request, 'apps/index.html', {'apps': apps, 'tech': tech})
 
 def assoc_user(request, app_id):
   App.objects.get(id=app_id).users.add(request.user)
@@ -129,4 +129,3 @@ def disassoc_user(request, app_id):
   app = App.objects.get(id=app_id)
   app.users.remove(request.user.id)
   return redirect('profile')
-

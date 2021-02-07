@@ -5,6 +5,7 @@
 <h1>App Ideas</h1>
 <span>Don't see one that speaks to you? Go <a href="{% url 'apps_create' %}">Create An App!</a></span>
 
+{% if apps.count %}
 <div>
     {% for app in apps %}
     <div>
@@ -30,6 +31,11 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div><div>
+    You've collected all current app ideas in the App Cache, go build some!
+</div></div>
+{% endif %}
 
 
 {% endblock %}
