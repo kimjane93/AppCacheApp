@@ -3,12 +3,9 @@
 {% block content %}
 
 <h1>Search Results</h1>
-<ul>
-    {% for app in apps %}
-      <li>
-        {{ app.name }}
-      </li>
-    {% endfor %}
-  </ul>
+
+{% for app in apps %}
+<h1>{{app.name}}</h1>
+{% endfor %}
 
 {% endblock %}

@@ -6,6 +6,14 @@
 <span>Don't see one that speaks to you? Go <a href="{% url 'apps_create' %}">Create An App!</a></span>
 </div>
 
+<form action="{% url 'apps_search' %}" method="get">
+    {% for tech in tech %}
+    <label>{{tech.name}}</label>
+    <input type="number" name="q" value="{{tech.id}}">
+    {% endfor %}
+    <button type="submit">Search Apps</button>
+</form>
+
 {% if apps.count %}
 <div class="card-list">
     {% for app in apps %}
@@ -23,12 +31,16 @@
         <form action="{% url 'apps_detail' app.id %}">
             <button type="submit" class="btn btn-secondary">Details</button>
         </form>
+        {% if app in apps_you_dont_have.all %}
       <form action="{% url 'assoc_user' app.id %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-secondary">
                 Add To List!
             </button>
         </form> 
+        {% else %}
+        <p>You Have This On Your Build List</p>
+        {% endif %}
     </div>
     </div>
     {% endfor %}

@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserForm, NoteForm, BuildLinkForm
 # from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-
+from django.db.models import Q
 
 
 def home(request):
@@ -87,9 +87,10 @@ class AppCreate(LoginRequiredMixin, CreateView):
     return redirect('/apps/')
 
 def apps_index(request):
-  apps = App.objects.exclude(users__exact=request.user)
+  apps = App.objects.all()
+  apps_you_dont_have = App.objects.exclude(users__exact=request.user)
   tech = Technologie.objects.all()
-  return render(request, 'apps/index.html', {'apps': apps, 'tech': tech})
+  return render(request, 'apps/index.html', {'apps_you_dont_have': apps_you_dont_have, 'apps': apps, 'tech': tech})
 
 def assoc_user(request, app_id):
   App.objects.get(id=app_id).users.add(request.user)
@@ -129,3 +130,9 @@ def disassoc_user(request, app_id):
   app = App.objects.get(id=app_id)
   app.users.remove(request.user.id)
   return redirect('profile')
+
+def apps_search(request):
+  query = request.GET.get('q')
+  apps = App.objects.filter(Q(tech__exact=query))
+
+  return render(request, 'apps/search_results.html', {'apps': apps})

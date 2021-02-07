@@ -4,6 +4,7 @@ body {
     flex-direction: column;
     padding-top: 70px; 
     align-items: center;
+    font-family: 'Chakra Petch', sans-serif;
   }
   
   main {
@@ -26,6 +27,9 @@ h1{
     text-align: center;
 }
 
-
+/* .app-detail_container>div{
+    display: flex;
+    
+} */
 
   
