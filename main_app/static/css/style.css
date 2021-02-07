@@ -1,4 +1,26 @@
-body { 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     padding-top: 70px; 
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+
+
+.card-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
+.card-list>div {
+    margin: 5%;
+}
+
+
+
+  
