@@ -5,6 +5,8 @@ body {
     padding-top: 70px; 
     align-items: center;
     font-family: 'Chakra Petch', sans-serif;
+    background-image: url("/static/images/CNqyJx.png");
+    background-position: fixed;
   }
   
   main {
