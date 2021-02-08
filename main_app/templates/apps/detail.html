@@ -1,106 +1,152 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
-{% block content %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
 
 <a href="{% url 'apps_index' %}">Return To Index</a>
 
-<div class="app-detail-container">
-  <div class="card" style="width: auto;">
+<div class="page-top">
+  <div class="card" style="width: auto">
+    <div class="card-body">
+      <h5 class="card-title">{{app.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        First Added By:
+        <a href="{% url 'users_detail' creator.id %}">{{creator.first_name}}</a>
+      </h6>
+      <p class="card-text">{{app.description}}</p>
       <div class="card-body">
-        <h5 class="card-title">{{app.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">First Added By: <a href="{% url 'users_detail' creator.id %}">{{creator.first_name}}</a></h6>
-        <p class="card-text">{{app.description}}</p>
-        <div class="card-body">
-          <div class="card" style="width: auto;">
-            <label class="card-label">Technology Used</label>
-            <ul class="list-group list-group-flush">
-              {% for tech in app.tech.all %}
-              <li class="list-group-item"><a target="_blank" href="{{tech.docs}}">{{ tech.name }}</a></li>
-              {% endfor %}
-            </ul>
+        <div class="card" style="width: auto">
+          <label class="card-label">Technology Used</label>
+          <ul class="list-group list-group-flush">
+            {% for tech in app.tech.all %}
+            <li class="list-group-item">
+              <a target="_blank" href="{{tech.docs}}">{{ tech.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div>
+        {% if user.id in app.users %}
+        <h1>You've got this in your build list already</h1>
+        {% else %}
+        <form action="{% url 'assoc_user' app.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-secondary">
+            Add This App To Your List!
+          </button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="card" style="width: auto">
+      <div class="card-body">
+        <form action="{% url 'apps_addnote' app.id %}" method="post">
+          {% csrf_token %} {{note_form|crispy}}
+          <button type="submit" class="btn btn-secondary">Add Note</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card" style="width: auto">
+      <a
+        class="btn btn-secondary"
+        data-bs-toggle="collapse"
+        href="#multiCollapseExample2"
+        role="button"
+        aria-expanded="false"
+        aria-controls="multiCollapseExample2"
+        >Notes</a
+      >
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div class="card card-body">
+              {% if app.note_set.count %}
+              <table class="striped">
+                <thead>
+                  <tr>
+                    <th>Notes:</th>
+                    <th>Date Posted</th>
+                    <th>Posted By</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for note in app.note_set.all %}
+                  <tr>
+                    <td>{{note.message}}</td>
+                    <td>{{note.date}}</td>
+                    <td>
+                      <a href="{% url 'users_detail' note.user.id %}"
+                        >{{note.user.first_name}}</a
+                      >
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <h4>No Notes On This Build Idea Yet</h4>
+              {% endif %}
+            </div>
           </div>
         </div>
+      </div>
+
+      <div class="card">
         <div>
+          <h4>Show Off Your Finished Builds Based On This Idea</h4>
+          <form action="{% url 'apps_addlink' app.id %}" method="post">
+            {% csrf_token %} {{buildlink_form|crispy}}
+            <button type="submit" class="btn btn-secondary">Add Link</button>
+          </form>
+        </div>
 
-          {% if user.id in app.users %}
-          <h1>You've got this in your build list already</h1>
-          {% else %}
-          <form action="{% url 'assoc_user' app.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-secondary">
-                Add This App To Your List!
-            </button>
-        </form> 
-        {% endif %}
+        <a
+          class="btn btn-secondary"
+          data-bs-toggle="collapse"
+          href="#multiCollapseExample3"
+          role="button"
+          aria-expanded="false"
+          aria-controls="multiCollapseExample3"
+          >Finished Builds</a
+        >
+        <div class="row">
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample3">
+              <div class="card card-body">
+                {% if app.buildlink_set.count %}
+                <table class="striped">
+                  <thead>
+                    <tr>
+                      <th>Built Apps</th>
+                      <th>Posted By</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for link in app.buildlink_set.all %}
+                    <tr>
+                      <td>
+                        <a href="{{link.link}}" target="_blank"
+                          >{{link.name}}</a
+                        >
+                      </td>
+                      <td>
+                        <a href="{% url 'users_detail' link.user.id %}"
+                          >{{link.user.first_name}}</a
+                        >
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                <h4>No Builds Yet, Give It A Go!</h4>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
   </div>
-
-
-    <div class="card" style="width: auto;">
-      <div class="card-body">
-
-      <form action="{% url 'apps_addnote' app.id %}" method="post">
-        {% csrf_token %}
-        {{note_form|crispy}}
-        <button type="submit" class="btn btn-secondary">Add Note</button>
-    </form>
-  </div>
-    </div>  
-
-  <div class="card" style="width: auto;">
-    {% if app.note_set.count %}
-    <table class="striped">
-        <thead>
-          <tr><th>Notes:</th><th>Date Posted</th><th>Posted By</th></tr>
-        </thead>
-        <tbody>
-          {% for note in app.note_set.all %}
-            <tr>
-              <td>{{note.message}}</td>
-              <td>{{note.date}}</td>
-              <td><a href="{% url 'users_detail' note.user.id %}">{{note.user.first_name}}</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-      <h4>No Notes On This Build Idea Yet</h4>
-      {% endif %}
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div>
-      <h4>Show Off Your Finished Builds Based On This Idea</h4>
-      <form action="{% url 'apps_addlink' app.id %}" method="post">
-        {% csrf_token %}
-        {{buildlink_form|crispy}}
-        <button type="submit" class="btn btn-secondary">Add Link</button>
-      </form>
-    </div>
-    {% if app.buildlink_set.count %}
-    <table class="striped">
-        <thead>
-          <tr><th>Built Apps</th><th>Posted By</th></tr>
-        </thead>
-        <tbody>
-          {% for link in app.buildlink_set.all %}
-            <tr>
-              <td><a href="{{link.link}}" target="_blank">{{link.name}}</a></td>
-              <td><a href="{% url 'users_detail' link.user.id %}">{{link.user.first_name}}</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-      <h4>No Builds Yet, Give It A Go!</h4>
-      {% endif %}
-  </div>
-  
-  </div>
-
-
+</div>
 {% endblock %}

@@ -1,62 +1,4 @@
 {% extends 'base.html' %} {% block content %}
-<div>
-  <div>
-    <div>
-      <img src="{{user.profile.photo}}" height="150px" alt="" />
-      <h1>{{ user.first_name }}</h1>
-    </div>
-    <div>
-      {{user.profile.bio}} You Joined Appcache In {{user.date_joined.year}}
-      <div>
-        <a href="{{ user.profile.linkedin }}" target="_blank">Linkedin</a>
-        <a href="{{ user.profile.github }}" target="_blank">Github</a>
-      </div>
-      <a href="{% url 'profiles_update' user.profile.id %}"
-        >Update Your Profile</a
-      >
-    </div>
-    <a href="{% url 'users_index' %}">Connect With Other Coders!</a>
-    <div>
-      <div></div>
-      {% if user.app_set.all %}
-      <table class="striped">
-        <h1>Build List</h1>
-        <thead>
-          <tr>
-            <th>App</th>
-            <th>Coders Building It</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for app in user.app_set.all %}
-          <tr>
-            <td><a href="{% url 'apps_detail' app.id %}">{{app.name}}</a></td>
-            {% if app.users.count %}
-            <td>
-              <a href="{% url 'attached_users' app.id %}"
-                >{{app.users.count}}</a
-              >
-            </td>
-            {% else %}
-            <td>{{app.users.count}}</td>
-            {% endif %}
-            <td>
-              <a href="{% url 'disassoc_user' app.id %}"
-                >Remove Build Idea From Your List</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  {% endfor %} {% else %}
-  <h4>
-    Go <a href="{% url 'apps_create' %}">Create Some App Ideas</a> or
-    <a href="{% url 'apps_index' %}">Steal Some Ideas From Other Coders!</a>
-  </h4>
-  {% endif %}
-</div>
 
 <div class="page-top">
   <div class="card" style="width: auto;">
@@ -131,29 +73,4 @@
           </div>
         </div>
       </div>
-
-      <a class="btn btn-secondary" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle first element</a>
-      <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse" id="multiCollapseExample2">
-            <div class="card card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <a class="btn btn-secondary" data-bs-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample3">Toggle first element</a>
-      <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse" id="multiCollapseExample3">
-            <div class="card card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
-
 {% endblock %}

@@ -5,11 +5,11 @@
     <div>
         <div>
             <img src="{{current_user.profile.photo}}" height="150px" alt="">
-            <h1>{{ user.first_name }}</h1>
+            <h1>{{ current_user.first_name }}</h1>
         </div>
         <div>
-            {{user.profile.bio}}
-            Year Joined: {{user.date_joined.year}}
+            {{current_user.profile.bio}}
+            Year Joined: {{current_user.date_joined.year}}
             <div>
                 <a href="{{ current_user.profile.linkedin }}" target="_blank" >Linkedin</a>
                 <a href="{{ current_user.profile.github }}" target="_blank" >Github</a>
@@ -17,7 +17,7 @@
         </div>
         <a href="{% url 'users_index' %}">Return To All Coders</a>
         <div>
-            {% if user.app_set.all %}
+            {% if current_user.app_set.all %}
             <table class="striped">
                 <h1>Build List</h1>
                 <thead>
