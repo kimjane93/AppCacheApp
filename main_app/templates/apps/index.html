@@ -7,10 +7,10 @@
 </div>
 
 <form action="{% url 'apps_search' %}" method="get">
-    {% for tech in tech %}
-    <label>{{tech.name}}</label>
-    <input type="number" name="q" value="{{tech.id}}">
-    {% endfor %}
+  
+    <label>{{tech.first.name}}</label>
+    <input type="number" name="q" value="{{tech.first.id}}">
+ 
     <button type="submit">Search Apps</button>
 </form>
 
@@ -20,12 +20,6 @@
         <div class="card border-light shadow mb-5 bg-white rounded" style="max-width: 18rem;">
             <div class="card-header">{{ app.name }}</div>
         <div class="card-body">
-            <h3>Technology</h3>
-            <ul class="card-text">
-                {% for tech in app.tech.all %}
-                <li>{{ tech.name }}</li>
-                {% endfor %}
-            </ul>
         </div>
         <div class="d-grid gap-2 col-6 mx-auto">
         <form action="{% url 'apps_detail' app.id %}">
@@ -53,24 +47,3 @@
 
 
 {% endblock %}
-
-
-<div class="page-top">
-    <h1>Tech List</h1>
-<span>Don't see a certaim framework or library? Go <a href="{% url 'tech_create' %}">Add Some Tech</a></span>
-</div>
-<div class="card-list">
-{% if tech.count %}
-
-{% for tech in tech %}
-<div class="card border-light shadow mb-5 bg-white rounded" style="max-width: 18rem;">
-    <div class="card-header">{{tech.name}}</div>
-    <div class="card-body">
-      <p class="card-text"><a href="{{tech.docs}}" target="_blank">Learn About Me</a></p>
-    </div>
-  </div>
-  {% endfor %}
-  {% else %}
-  <h3>Go Add Some Tech To Build Our Apps Around!</h3>
-  {% endif %}
-</div>

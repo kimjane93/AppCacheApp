@@ -98,11 +98,12 @@ def assoc_user(request, app_id):
 
 def apps_detail(request, app_id):
   app = App.objects.get(id=app_id)
+  user = User.objects.get(id=request.user.id)
   note_form = NoteForm()
   buildlink_form = BuildLinkForm()
   creator = User.objects.get(id=app.creator)
   return render(request, 'apps/detail.html', {
-    'app': app, 'note_form': note_form, 'buildlink_form': buildlink_form, 'creator': creator})
+    'app': app, 'user': user, 'note_form': note_form, 'buildlink_form': buildlink_form, 'creator': creator})
 
 def apps_addlink(request, app_id):
   form = BuildLinkForm(request.POST)
@@ -133,6 +134,8 @@ def disassoc_user(request, app_id):
 
 def apps_search(request):
   query = request.GET.get('q')
-  apps = App.objects.filter(Q(tech__exact=query))
+  # apps = App.objects.filter(Q(tech__exact=query))
+  # apps = App.objects.tech_set.filter(name=query)
+  print(query)
 
-  return render(request, 'apps/search_results.html', {'apps': apps})
+  return render(request, 'apps/search_results.html', )

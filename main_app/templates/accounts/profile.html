@@ -25,21 +25,15 @@
             <table class="striped">
                 <h1>Build List</h1>
                 <thead>
-                  <tr><th>App</th><th>Description</th><th>Tech</th><th>Coders Building It</th></tr>
+                  <tr><th>App</th><th>Coders Building It</th></tr>
                 </thead>
                 <tbody>
                     {% for app in user.app_set.all %}
                     <tr>
                       <td>{{app.name}}</td>
-                      <td>{{app.description}}</td>
-                      <td>
-                          {% for tech in app.tech.all %}
-                          <p>{{tech.name}}</p>
-                      </td>
                       <td>{{app.users.count}}</td>
                       <td><a href="{% url 'disassoc_user' app.id %}">Remove Build Idea From Your List</a></td>
                     </tr>
-                    {% endfor %}
                 </tbody>
               </table>
         </div>
