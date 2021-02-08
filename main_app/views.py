@@ -132,6 +132,14 @@ def disassoc_user(request, app_id):
   app.users.remove(request.user.id)
   return redirect('profile')
 
+def attached_users(request, app_id):
+  app = App.objects.get(id=app_id)
+  # print(app.users.all())
+  apps_you_dont_have = App.objects.exclude(users__exact=request.user)
+
+  return render(request, 'apps/attached_users.html', {'app': app, 'apps_dont_dont_have': apps_you_dont_have})
+
+
 def apps_search(request):
   query = request.GET.get('q')
   # apps = App.objects.filter(Q(tech__exact=query))
@@ -139,3 +147,4 @@ def apps_search(request):
   print(query)
 
   return render(request, 'apps/search_results.html', )
+

@@ -21,25 +21,25 @@
             <table class="striped">
                 <h1>Build List</h1>
                 <thead>
-                  <tr><th>App</th><th>Description</th><th>Tech</th><th>Coders Building It</th></tr>
+                  <tr><th>App</th><th>Coders Building It</th></tr>
                 </thead>
                 <tbody>
                     {% for app in current_user.app_set.all %}
                     <tr>
-                      <td>{{app.name}}</td>
-                      <td>{{app.description}}</td>
-                      <td>
-                          {% for tech in app.tech.all %}
-                          <p>{{tech.name}}</p>
-                      </td>
-                      <td>{{app.users.count}}</td>
-                      {% if app in apps_you_dont_have %}
-                      <td>You've Got This Idea In Your Cache Already!</td>
-                      {% else %}
-                      <td><a href="{% url 'assoc_user' app.id %}">Add Build Idea To Collection</a></td>
-                      {% endif %}
+                        <td><a href="{% url 'apps_detail' app.id %}">{{app.name}}</a></td>
+                        {% if app.users.count %}
+                        <td>
+                          <a href="{% url 'attached_users' app.id %}">{{app.users.count}}</a></td>
+                        {% else %}
+                        <td>{{app.users.count}}</td>
+                        {% endif %}
+                        {% if app in apps_you_dont_have.all %}
+                        <td><a href="{% url 'assoc_user' app.id %}">Add Build Idea To Collection</a></td>
+                        {% else %}
+                        <td>You've Got This Idea In Your Cache Already!</td>
+                        {% endif %}
+                        
                     </tr>
-                    {% endfor %}
                 </tbody>
               </table>
         </div>

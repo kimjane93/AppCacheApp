@@ -30,8 +30,13 @@
                 <tbody>
                     {% for app in user.app_set.all %}
                     <tr>
-                      <td>{{app.name}}</td>
+                      <td><a href="{% url 'apps_detail' app.id %}">{{app.name}}</a></td>
+                      {% if app.users.count %}
+                      <td>
+                        <a href="{% url 'attached_users' app.id %}">{{app.users.count}}</a></td>
+                      {% else %}
                       <td>{{app.users.count}}</td>
+                      {% endif %}
                       <td><a href="{% url 'disassoc_user' app.id %}">Remove Build Idea From Your List</a></td>
                     </tr>
                 </tbody>

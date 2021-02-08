@@ -21,5 +21,5 @@ urlpatterns = [
     path('accounts/<int:pk>/update', views.ProfileUpdate.as_view(), name='profiles_update'),
     path('apps/<int:app_id>/addlink', views.apps_addlink, name='apps_addlink'),
     path('apps/search/', views.apps_search, name='apps_search'),
-
+    path('apps/<int:app_id>/users', views.attached_users, name='attached_users'),
 ]
