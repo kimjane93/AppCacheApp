@@ -140,11 +140,20 @@ def attached_users(request, app_id):
   return render(request, 'apps/attached_users.html', {'app': app, 'apps_dont_dont_have': apps_you_dont_have})
 
 
+# def apps_search(request):
+#   query = request.GET.get('q')
+#   apps = App.objects.filter(Q(tech__exact=query))
+#   # apps = App.objects.tech_set.filter(name=query)
+#   print(query)
+
+# def apps_search(request):
+#   query = request.GET.get('q')
+#   apps = App.objects.filter(Q(tech__exact=query))
+
+#   return render(request, 'apps/search_results.html', {'apps': apps} )
+
 def apps_search(request):
   query = request.GET.get('q')
-  # apps = App.objects.filter(Q(tech__exact=query))
-  # apps = App.objects.tech_set.filter(name=query)
-  print(query)
+  apps = App.objects.filter(Q(tech__exact=query))
 
-  return render(request, 'apps/search_results.html', )
-
+  return render(request, 'apps/search_results.html', {'apps': apps} )

@@ -4,20 +4,32 @@
 <div class="page-top">
 <h1>App Ideas</h1>
 <span>Don't see one that speaks to you? Go <a href="{% url 'apps_create' %}">Create An App!</a></span>
-</div>
+
 
 <form action="{% url 'apps_search' %}" method="get">
-  
-    <label>{{tech.first.name}}</label>
-    <input type="number" name="q" value="{{tech.first.id}}">
- 
-    <button type="submit">Search Apps</button>
+    <div class="btn-group">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Tech Filter
+        </button>
+        <ol class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+    {% for tech in tech.all %}
+    <li class="dropdown-item">
+    {{tech.name}}
+    <input type="checkbox" name="q" value="{{tech.id}}">
+</li>
+    {% endfor %}
+    </ol>
+    <button type="submit" class="btn btn-secondary">Search Apps</button>
 </form>
+</div>
+
+
+
 
 {% if apps.count %}
 <div class="card-list">
     {% for app in apps %}
-        <div class="card border-light shadow mb-5 bg-white rounded" style="max-width: 18rem;">
+        <div class="card border-light shadow mb-5 bg-white rounded">
             <div class="card-header">{{ app.name }}</div>
         <div class="card-body">
         </div>
