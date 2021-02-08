@@ -11,7 +11,7 @@
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Tech Filter
         </button>
-        <ol class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+        <ol class="dropdown-menu dropdown-menu-dark scrollable-menu" role="menu" style="height: auto;max-height: 180px; overflow-x: hidden;" aria-labelledby="dropdownMenuButton2">
     {% for tech in tech.all %}
     <li class="dropdown-item">
     {{tech.name}}
