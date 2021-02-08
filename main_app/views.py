@@ -155,5 +155,6 @@ def attached_users(request, app_id):
 def apps_search(request):
   query = request.GET.get('q')
   apps = App.objects.filter(Q(tech__exact=query))
+  tech = Technologie.objects.all()
 
-  return render(request, 'apps/search_results.html', {'apps': apps} )
+  return render(request, 'apps/search_results.html', {'apps': apps, 'tech': tech} )
