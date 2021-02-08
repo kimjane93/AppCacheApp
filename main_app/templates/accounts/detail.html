@@ -1,52 +1,80 @@
-{% extends 'base.html' %}
 
-{% block content %}
-<div>
-    <div>
-        <div>
-            <img src="{{current_user.profile.photo}}" height="150px" alt="">
-            <h1>{{ current_user.first_name }}</h1>
+
+{% extends 'base.html' %} {% block content %}
+
+<div class="page-top">
+  <div class="card" style="width: auto;">
+    <img src="{{current_user.profile.photo}}" height="150px" style="max-width: 25rem;" alt="user selected headshot">
+    <div class="card-body">
+        <h1>{{ current_user.first_name }}</h1>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">{{current_user.profile.bio}}</p>
+          <p class="card-text">
+            Joined Appcache In {{current_user.date_joined.year}}
+          </p>
         </div>
-        <div>
-            {{current_user.profile.bio}}
-            Year Joined: {{current_user.date_joined.year}}
-            <div>
-                <a href="{{ current_user.profile.linkedin }}" target="_blank" >Linkedin</a>
-                <a href="{{ current_user.profile.github }}" target="_blank" >Github</a>
-            </div>
-        </div>
-        <a href="{% url 'users_index' %}">Return To All Coders</a>
-        <div>
-            {% if current_user.app_set.all %}
-            <table class="striped">
-                <h1>Build List</h1>
-                <thead>
-                  <tr><th>App</th><th>Coders Building It</th></tr>
-                </thead>
-                <tbody>
-                    {% for app in current_user.app_set.all %}
-                    <tr>
-                        <td><a href="{% url 'apps_detail' app.id %}">{{app.name}}</a></td>
-                        {% if app.users.count %}
-                        <td>
-                          <a href="{% url 'attached_users' app.id %}">{{app.users.count}}</a></td>
-                        {% else %}
-                        <td>{{app.users.count}}</td>
-                        {% endif %}
-                        {% if app in apps_you_dont_have.all %}
-                        <td><a href="{% url 'assoc_user' app.id %}">Add Build Idea To Collection</a></td>
-                        {% else %}
-                        <td>You've Got This Idea In Your Cache Already!</td>
-                        {% endif %}
-                        
-                    </tr>
-                </tbody>
-              </table>
-        </div>
+      </div>
     </div>
-    {% endfor %}
-    {% else %}
-    <h4>They don't have any apps on their agenda, why not check out the <a href="{% url 'apps_index' %}">App Cache!</a></h4>
-    {% endif %}
-</div>
+    <div class="card">
+      <div class="card-body">
+        <a class="card-link" href="{{ current_user.profile.linkedin }}" target="_blank"
+          >Their Linkedin Profile</a
+        >
+        <a class="card-link" href="{{ current_user.profile.github }}" target="_blank"
+          >Their Github Profile</a
+        >
+        <a class="card-link" href="{% url 'users_index' %}">Connect With Other Coders!</a>
+        </p>
+      </div>
+    </div>
+        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Build List</a>
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+                {% if current_user.app_set.all %}
+                <table>
+                  <thead>
+                    <tr>
+                      <th>App</th>
+                      <th>Coders Building It</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for app in user.app_set.all %}
+                    <tr>
+                      <td><a href="{% url 'apps_detail' app.id %}">{{app.name}}</a></td>
+                      {% if app.users.count %}
+                      <td>
+                        <a href="{% url 'attached_users' app.id %}"
+                          >{{app.users.count}}</a
+                        >
+                      </td>
+                      {% else %}
+                      <td>{{app.users.count}}</td>
+                      {% endif %}
+                      <td>
+                          {% if app in apps_you_dont_have %}
+                          <a href="{% url 'assoc_user' app.id %}">Add To Build List</a>
+                          {% else %}
+                        <a href="{% url 'disassoc_user' app.id %}"
+                          >Remove Build Idea From Your List</a
+                        >
+                        {% endif %}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            {% endfor %} 
+            {% else %}
+            <h4>
+              Go <a href="{% url 'apps_create' %}">Create Some App Ideas</a> or
+              <a href="{% url 'apps_index' %}">Steal Some Ideas From Other Coders!</a>
+            </h4>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
 {% endblock %}
