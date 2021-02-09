@@ -56,6 +56,11 @@ a {
   color: #181058;
 }
 
+.page-top{
+  align-items: center;
+}
 
-
+.alert {
+  background-color: #9F95EC;
+}
   

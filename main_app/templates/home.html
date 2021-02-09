@@ -1,12 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 {% load crispy_forms_tags %}
 
-<h1>Home</h1>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'images/noun_sharing ideas_1833154.png' %}" class="d-block w-100" alt="three lightbulbs overlapping each other">
+        <h4>Welcome To App Cache!</h4>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/noun_Idea_1211638.png' %}" class="d-block w-100" alt="face of a person with two hair buns, below a lit light bulb">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/noun_Idea_2053578.png' %}" class="d-block w-100" alt="side view perspective of outstretched hand proffering a lit lightbulb">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/noun_group_3513805.png' %}" class="d-block w-100" alt="lightbulb in a taxonomy branch with three people as offshoots, inheriting the lightbulb moment">
+        <h4>Share The Inspiration, and See What New Collaborative Ideas They Inspire</h4>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/noun_Community_2281479.png' %}" class="d-block w-100" alt="three hands overlapping each other in a cheer ritual">
+        <h4>Connect With Your Peers, Network, and Build Community!</h4>
+      </div>
+    </div>
+  </div>
+
+
 
 <center>
-    <h1 class = 'alert alert-success'>Subscribe Form</h1>
+    <h1 class = 'alert'>Get Updates From App Cache</h1>
 <form method="POST">
     {% csrf_token %}
     <div class = "form-group">
