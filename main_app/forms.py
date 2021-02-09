@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Note, BuildLink
+from .models import Note, BuildLink, Subscribe
 
 class UserForm(UserCreationForm):
     class Meta(UserCreationForm): 
@@ -17,3 +17,10 @@ class BuildLinkForm(ModelForm):
     class Meta:
         model = BuildLink
         fields = ['name', 'link']
+
+class SubscribeForm(ModelForm):
+    class Meta:
+        model = Subscribe
+        fields = '__all__'
+    
+    

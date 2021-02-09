@@ -64,3 +64,9 @@ class BuildLink(models.Model):
 
     def __str__(self):
         return f"{self.name} linked by {self.user.id}"
+
+class Subscribe(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.email

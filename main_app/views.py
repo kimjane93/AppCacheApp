@@ -6,12 +6,22 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Technologie, App, User, Note, BuildLink
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import UserForm, NoteForm, BuildLinkForm
+from .forms import UserForm, NoteForm, BuildLinkForm, SubscribeForm
 from django.db.models import Q
+from appcache.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
 
 
 def home(request):
-    return render(request, 'home.html')
+  subscribe_form = SubscribeForm()
+  if request.method == 'POST':
+    subscribe_form = SubscribeForm(request.POST)
+    subject = 'Welcome To The Dev Community at App Cache'
+    message = 'Thanks for subscribing to the App Cache Flash! We hope you enjoy sharing and comparing with your fellow coders. Create some app ideas here, implement a few ideas there, and be sure to network with each other on Linkedin!'
+    recipient = str(subscribe_form['email'].value())
+    send_mail(subject, message, EMAIL_HOST_USER, [recipient], fail_silently = False)
+    return render(request, 'subscribe/success.html', {'recipient': recipient})
+  return render(request, 'home.html', {'subscribe_form': subscribe_form})
 
 def about(request):
     return render(request, 'about.html')
@@ -51,6 +61,19 @@ def users_detail(request, user_id):
 def profile(request):
   user = User.objects.get(id=request.user.id)
   return render(request, 'accounts/profile.html', {'user': user})
+
+
+@login_required
+def subscribe(request):
+  subscribe_form = SubscribeForm()
+  if request.method == 'POST':
+    subscribe_form = SubscribeForm(request.POST)
+    subject = 'Welcome To The Dev Community at App Cache'
+    message = 'Thanks for subscribing to the App Cache Flash! We hope you enjoy sharing and comparing with your fellow coders. Create some app ideas here, implement a few ideas there, and be sure to network with each other on Linkedin!'
+    recipient = str(subscribe_form['email'].value())
+    send_mail(subject, message, EMAIL_HOST_USER, [recipient], fail_silently = False)
+    return render(request, 'subscribe/success.html', {'recipient': recipient})
+  return render(request, 'home.html', {'subscribe_form': subscribe_form})
 
 @login_required
 def apps_index(request):
