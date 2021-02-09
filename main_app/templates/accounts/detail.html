@@ -3,20 +3,20 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="page-top">
-  <div class="card" style="width: auto;">
-    <img src="{{current_user.profile.photo}}" style="max-width: 25rem;" alt="user selected headshot">
-    <div class="card-body">
+  <div class="card shadow" style="width: auto;">
+    <img src="{{current_user.profile.photo}}" style="max-width: auto;" alt="user selected headshot">
+    <div class="card-body shadow">
         <h1>{{ current_user.first_name }}</h1>
       <div class="card">
-        <div class="card-body">
-          <p class="card-text">{{current_user.profile.bio}}</p>
-          <p class="card-text">
-            Joined Appcache In {{current_user.date_joined.year}}
+        <div class="card-body shadow">
+          <p class="card-text shadow">{{current_user.profile.bio}}</p>
+          <p class="card-text shadow">
+            Joined App Cache In {{current_user.date_joined.year}}
           </p>
         </div>
       </div>
     </div>
-    <div class="card">
+    <div id="link-div" class="card shadow">
       <div class="card-body">
         <a class="card-link" href="{{ current_user.profile.linkedin }}" target="_blank"
           >Their Linkedin Profile</a
@@ -28,7 +28,7 @@
         </p>
       </div>
     </div>
-        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Build List</a>
+        <a id="build-list-btn" class="btn btn-secondary shadow" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Build List</a>
       <div class="row">
         <div class="col">
           <div class="collapse multi-collapse" id="multiCollapseExample1">
@@ -39,6 +39,7 @@
                     <tr>
                       <th>App</th>
                       <th>Coders Building It</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
