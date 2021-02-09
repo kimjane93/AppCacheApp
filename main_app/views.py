@@ -18,7 +18,7 @@ def home(request):
     subscribe_form = SubscribeForm(request.POST)
     subject = 'Welcome To The Dev Community at App Cache'
     if request.user.is_authenticated:
-      message = f"Hey {request.user.first_name}, thanks for subscribing to the App Cache Flash! We hope you enjoy sharing and comparing with your fellow coders. Create some app ideas here, implement a few ideas there, and be sure to network with each other on Linkedin!"
+      message = f'Hey {request.user.first_name}, thanks for subscribing to the App Cache Flash! We hope you enjoy sharing and comparing with your fellow coders. Create some app ideas here, implement a few ideas there, and be sure to network with each other on Linkedin!'
     else:
       message = f"Hey Friend, thanks for subscribing to the App Cache Flash! If you have already signed on with us, we hope you continue to enjoy sharing and comparing with your fellow coders. Create some app ideas here, implement a few ideas there, and be sure to network with each other on Linkedin! If you haven't decided on making an account yet, THIS is your sign to join the party, as one of my favorite coding instructors would say."
     recipient = str(subscribe_form['email'].value())

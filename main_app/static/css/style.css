@@ -5,8 +5,7 @@ body {
     padding-top: 70px; 
     align-items: center;
     font-family: 'Chakra Petch', sans-serif;
-    background-image: url("/static/images/CNqyJx.png");
-    background-position: fixed;
+    background-color: #E7E5FA;
   }
   
   main {
@@ -27,6 +26,34 @@ body {
 
 h1{
     text-align: center;
+}
+
+.navbar {
+  background-color: #9388E9;
+}
+
+.navbar-brand {
+  color: #181058; 
+}
+
+.navbar-toggler-icon {
+  border-color: #181058; 
+}
+
+.navbar-toggler {
+  border-color: #181058; 
+}
+
+.nav-link {
+  color: #181058;
+}
+
+td {
+  text-align: center;
+}
+
+a {
+  color: #181058;
 }
 
 

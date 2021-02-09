@@ -21,17 +21,17 @@ href="{% static 'css/style.css' %}"
   </head>
   <body>
       <header>
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <nav class="navbar navbar-expand-lg fixed-top">
               
             <div class="container-fluid">
-                    <a href="/" class="navbar-brand">App Cache</a>
+                    <a href="/" class="navbar-brand"> <span>App Cache <img src="{% static 'images/noun_sharing ideas_1833154.png' %}" alt="" height="35rem"></span></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
+                      <img class="navbar-toggler-icon" src="{% static 'images/noun_List_204249.png' %}" alt="">
                     </button>
 
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a href="{% url 'about' %}" class="nav-link active" aria-current="page">About</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link active" aria-current="page">Profile</a></li>

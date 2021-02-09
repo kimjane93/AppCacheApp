@@ -34,7 +34,7 @@
           <div class="collapse multi-collapse" id="multiCollapseExample1">
             <div class="card card-body">
                 {% if current_user.app_set.all %}
-                <table>
+                <table class="table table-striped">
                   <thead>
                     <tr>
                       <th>App</th>
@@ -58,9 +58,7 @@
                           {% if app in apps_you_dont_have %}
                           <a href="{% url 'assoc_user' app.id %}">Add To Build List</a>
                           {% else %}
-                        <a href="{% url 'disassoc_user' app.id %}"
-                          >Remove Build Idea From Your List</a
-                        >
+                        <p>Already In Your Build List</p>
                         {% endif %}
                       </td>
                     </tr>
