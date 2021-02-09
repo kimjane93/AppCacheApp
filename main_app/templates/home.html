@@ -4,7 +4,7 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="{% static 'images/noun_sharing ideas_1833154.png' %}" class="d-block w-100" alt="three lightbulbs overlapping each other">
@@ -12,9 +12,11 @@
       </div>
       <div class="carousel-item">
         <img src="{% static 'images/noun_Idea_1211638.png' %}" class="d-block w-100" alt="face of a person with two hair buns, below a lit light bulb">
+        <h4>Got A Cool Build Idea?</h4>
       </div>
       <div class="carousel-item">
         <img src="{% static 'images/noun_Idea_2053578.png' %}" class="d-block w-100" alt="side view perspective of outstretched hand proffering a lit lightbulb">
+        <h4>Add It App Cache!</h4>
       </div>
       <div class="carousel-item">
         <img src="{% static 'images/noun_group_3513805.png' %}" class="d-block w-100" alt="lightbulb in a taxonomy branch with three people as offshoots, inheriting the lightbulb moment">
@@ -25,6 +27,13 @@
         <h4>Connect With Your Peers, Network, and Build Community!</h4>
       </div>
     </div>
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"></li>
+      </ol>
   </div>
 
 

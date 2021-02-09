@@ -64,3 +64,22 @@ a {
   background-color: #9F95EC;
 }
   
+.carousel-item {
+width: auto;
+height: 600;
+max-height: 600px;
+}
+
+.card {
+  background-color: #F3F2FD;
+}
+
+.card-title {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.card-text {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
