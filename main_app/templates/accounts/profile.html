@@ -1,21 +1,21 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="page-top">
-  <div class="card" style="width: auto;">
-    <img src="{{user.profile.photo}}" style="max-width: 25rem;" alt="user selected headshot" />
+  <div class="card shadow" style="width: auto;">
+    <img src="{{user.profile.photo}}" style="max-width: auto;" alt="user selected headshot" />
     <div class="card-body">
       <h1>{{ user.first_name }}</h1>
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body">
-          <p class="card-text">{{user.profile.bio}}</p>
-          <p class="card-text">
+          <p class="card-text shadow">{{user.profile.bio}}</p>
+          <p class="card-text shadow">
             You Joined Appcache In {{user.date_joined.year}}
           </p>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-body">
+    <div class="card shadow">
+      <div class="card-body link-div">
         <a class="card-link" href="{{ user.profile.linkedin }}" target="_blank"
           >Your Linkedin Profile</a
         >
@@ -28,7 +28,7 @@
         </p>
       </div>
     </div>
-        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Build List</a>
+        <a class="btn btn-secondary build-list-btn" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Build List</a>
       <div class="row">
         <div class="col">
           <div class="collapse multi-collapse" id="multiCollapseExample1">
