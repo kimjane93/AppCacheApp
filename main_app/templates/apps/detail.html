@@ -1,19 +1,16 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
-
-<a href="{% url 'apps_index' %}">Return To Index</a>
-
 <div class="page-top">
-  <div class="card" style="width: auto">
-    <div class="card-body">
-      <h5 class="card-title">{{app.name}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">
+  <div class="card shadow" style="width: auto">
+    <div class="card-body shadow">
+      <h5 id="app-title" class="card-title shadow">{{app.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted shadow">
         First Added By:
         <a href="{% url 'users_detail' creator.id %}">{{creator.first_name}}</a>
       </h6>
-      <p class="card-text">{{app.description}}</p>
+      <p class="card-text shadow">{{app.description}}</p>
       <div class="card-body">
-        <div class="card" style="width: auto">
-          <label class="card-label">Technology Used</label>
+        <div class="card shadow" style="width: auto">
+          <label class="card-label shadow">Technology Used</label>
           <ul class="list-group list-group-flush">
             {% for tech in app.tech.all %}
             <li class="list-group-item">
@@ -25,11 +22,11 @@
       </div>
       <div>
         {% if user.id in app.users %}
-        <h1>You've got this in your build list already</h1>
+        <h1 class="shadow">You've got this in your build list already</h1>
         {% else %}
         <form action="{% url 'assoc_user' app.id %}" method="post">
           {% csrf_token %}
-          <button type="submit" class="btn btn-secondary">
+          <button type="submit" class="btn btn-secondary shadow">
             Add This App To Your List!
           </button>
         </form>
@@ -40,15 +37,18 @@
     <div class="card" style="width: auto">
       <div class="card-body">
         <form action="{% url 'apps_addnote' app.id %}" method="post">
-          {% csrf_token %} {{note_form|crispy}}
-          <button type="submit" class="btn btn-secondary">Add Note</button>
+          {% csrf_token %} 
+          <div class="shadow">
+          {{note_form|crispy}}
+        </div>
+          <button type="submit" class="btn btn-secondary shadow">Add Note</button>
         </form>
       </div>
     </div>
 
     <div class="card" style="width: auto">
       <a
-        class="btn btn-secondary"
+        class="btn btn-secondary build-list-btn"
         data-bs-toggle="collapse"
         href="#multiCollapseExample2"
         role="button"
@@ -61,7 +61,7 @@
           <div class="collapse multi-collapse" id="multiCollapseExample2">
             <div class="card card-body">
               {% if app.note_set.count %}
-              <table class="table table-striped">
+              <table class="table table-striped shadow">
                 <thead>
                   <tr>
                     <th>Notes:</th>
@@ -92,11 +92,12 @@
       </div>
 
       <div class="card">
-        <div>
+        <div class="card-body">
           <h4>Show Off Your Finished Builds Based On This Idea</h4>
           <form action="{% url 'apps_addlink' app.id %}" method="post">
-            {% csrf_token %} {{buildlink_form|crispy}}
-            <button type="submit" class="btn btn-secondary">Add Link</button>
+            {% csrf_token %} 
+            {{buildlink_form|crispy}}
+            <button type="submit" class="btn btn-secondary shadow">Add Link</button>
           </form>
         </div>
 
@@ -114,7 +115,7 @@
             <div class="collapse multi-collapse" id="multiCollapseExample3">
               <div class="card card-body">
                 {% if app.buildlink_set.count %}
-                <table class="striped">
+                <table class="table table-striped shadow">
                   <thead>
                     <tr>
                       <th>Built Apps</th>
