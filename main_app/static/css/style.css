@@ -92,7 +92,6 @@ max-height: 600px;
 
 .build-list-btn {
 margin-bottom: 10px;
-margin-top: 10px;
 }
 
 .card-body {
@@ -115,4 +114,14 @@ margin-top: 10px;
 
 .btn {
   margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+.profile-form textarea {
+  height: 50px;
+}
+
+.email {
+  background-color: #9F95EC;
+  border-radius: 10px;
 }

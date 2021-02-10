@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="page-top">
+<div class="page-top card shadow mb-3">
     <h1>Tech List</h1>
 <span>Don't see a certaim framework or library? Go <a href="{% url 'tech_create' %}">Add Some Tech</a></span>
 </div>
@@ -9,10 +9,10 @@
   {% if tech.count %}
 
   {% for tech in tech %}
-  <div class="card border-light shadow mb-5 rounded" style="max-width: 18rem;">
-      <div class="card-header">{{tech.name}}</div>
-      <div class="card-body">
-        <p class="card-text"><a href="{{tech.docs}}" target="_blank">Learn About Me</a></p>
+  <div class="card shadow rounded" style="max-width: 18rem;">
+      <div class="card-header shadow">{{tech.name}}</div>
+      <div class="card-body shadow">
+        <p class="card-text shadow"><a href="{{tech.docs}}" target="_blank">Learn About Me</a></p>
       </div>
   </div>
     {% endfor %}

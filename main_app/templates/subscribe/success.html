@@ -2,9 +2,9 @@
 
 {% block content %}
 <center>
-    <h1>email sent, thanks for subscribing!</h1>
+    <h1>email sent to {{recipient}}, thanks for subscribing!</h1>
     <form action="{% url 'home' %}">
-        <button class="btn btn-secondary" type="submit">Return Home</button>
+        <button class="btn btn-sm btn-secondary shadow" type="submit">Return Home</button>
     </form>
 </center>
 {% endblock %}

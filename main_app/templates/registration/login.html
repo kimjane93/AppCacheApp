@@ -1,10 +1,12 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
 
 <h1>Log In</h1>
+<div class="card-body shadow profile-form">
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %} {{ form|crispy }}
-  <button type="submit" class="btn btn-secondary">Log In</button>
+  <button type="submit" class="btn btn-sm btn-secondary shadow">Log In</button>
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
+</div>
 
 {% endblock %}

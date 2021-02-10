@@ -26,7 +26,7 @@
         {% else %}
         <form action="{% url 'assoc_user' app.id %}" method="post">
           {% csrf_token %}
-          <button type="submit" class="btn btn-secondary shadow">
+          <button type="submit" class="btn btn-sm btn-secondary shadow">
             Add This App To Your List!
           </button>
         </form>
@@ -38,17 +38,17 @@
       <div class="card-body">
         <form action="{% url 'apps_addnote' app.id %}" method="post">
           {% csrf_token %} 
-          <div class="shadow">
+          <div class="shadow profile-form">
           {{note_form|crispy}}
         </div>
-          <button type="submit" class="btn btn-secondary shadow">Add Note</button>
+          <button type="submit" class="btn btn-sm btn-secondary shadow">Add Note</button>
         </form>
       </div>
     </div>
 
     <div class="card" style="width: auto">
       <a
-        class="btn btn-secondary build-list-btn"
+        class="btn btn-sm btn-secondary build-list-btn"
         data-bs-toggle="collapse"
         href="#multiCollapseExample2"
         role="button"
@@ -97,7 +97,7 @@
           <form action="{% url 'apps_addlink' app.id %}" method="post">
             {% csrf_token %} 
             {{buildlink_form|crispy}}
-            <button type="submit" class="btn btn-secondary shadow">Add Link</button>
+            <button type="submit" class="btn btn-sm btn-secondary shadow">Add Link</button>
           </form>
         </div>
 

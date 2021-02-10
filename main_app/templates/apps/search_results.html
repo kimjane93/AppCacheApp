@@ -6,8 +6,8 @@
   <h1>Search Results</h1>
 <hr>
   <form action="{% url 'apps_search' %}" method="get">
-    <div class="btn-group shadow">
-        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="btn-group">
+        <button class="btn btn-sm btn-secondary btn-sm dropdown-toggle shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Tech Filter
         </button>
         <ol class="dropdown-menu dropdown-menu-dark scrollable-menu shadow" role="menu" style="height: auto;max-height: 180px; overflow-x: hidden;" aria-labelledby="dropdownMenuButton2">
@@ -18,8 +18,9 @@
 </li>
     {% endfor %}
     </ol>
-    <button type="submit" class="btn btn-secondary">Search Apps</button>
+    <button type="submit" class="btn btn-sm btn-secondary shadow">Search Apps</button>
 </form>
+</div>
 </div>
 
 

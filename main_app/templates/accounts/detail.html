@@ -3,7 +3,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="page-top mb-3">
-  <div class="card shadow" style="width: auto;">
+  <div class="card shadow" style="max-width: 45rem;">
     <img src="{{current_user.profile.photo}}" class="card-img-top shadow" alt="user selected headshot">
     <div class="card-body shadow">
         <h1>{{ current_user.first_name }}</h1>
@@ -28,7 +28,7 @@
         </p>
       </div>
     </div>
-        <a class="btn btn-secondary shadow build-list-btn" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Build List</a>
+        <a class="btn btn-sm btn-secondary shadow build-list-btn" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Build List</a>
       <div class="row">
         <div class="col">
           <div class="collapse multi-collapse" id="multiCollapseExample1">
