@@ -15,7 +15,7 @@
     <div class="card-body shadow">
       <h5 class="card-title shadow">{{attached_user.first_name}}</h5>
       <p class="card-text shadow">Year Joined: {{attached_user.date_joined.year}}</p>
-      <form action="{% url 'users_detail' user.id %}">
+      <form action="{% url 'users_detail' attached_user.id %}">
         <button type="submit" class="btn btn-sm btn-secondary shadow">Profile</button>
       </form>
     </div>
