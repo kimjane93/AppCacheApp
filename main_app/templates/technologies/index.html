@@ -6,18 +6,18 @@
 <span>Don't see a certaim framework or library? Go <a href="{% url 'tech_create' %}">Add Some Tech</a></span>
 </div>
 <div class="card-list">
-{% if tech.count %}
+  {% if tech.count %}
 
-{% for tech in tech %}
-<div class="card border-light shadow mb-5 bg-white rounded" style="max-width: 18rem;">
-    <div class="card-header">{{tech.name}}</div>
-    <div class="card-body">
-      <p class="card-text"><a href="{{tech.docs}}" target="_blank">Learn About Me</a></p>
-    </div>
+  {% for tech in tech %}
+  <div class="card border-light shadow mb-5 rounded" style="max-width: 18rem;">
+      <div class="card-header">{{tech.name}}</div>
+      <div class="card-body">
+        <p class="card-text"><a href="{{tech.docs}}" target="_blank">Learn About Me</a></p>
+      </div>
   </div>
-  {% endfor %}
-  {% else %}
-  <h3>Go Add Some Tech To Build Our Apps Around!</h3>
-  {% endif %}
+    {% endfor %}
+    {% else %}
+    <h3>Go Add Some Tech To Build Our Apps Around!</h3>
+    {% endif %}
 </div>
 {% endblock %}

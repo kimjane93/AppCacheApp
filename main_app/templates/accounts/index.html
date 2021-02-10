@@ -4,9 +4,9 @@
   <h1>Fellow Coders</h1>
 </div>
 
-<div class="card-list">
+<div class="card-list-users">
   {% for user in users %}
-  <div class="card shadow" style="width: 18rem">
+  <div class="card m-5 shadow" style="max-width: 18rem;">
     <img
       src="{{ user.profile.photo }}"
       class="card-img-top shadow"
@@ -22,5 +22,4 @@
   </div>
   {% endfor %}
 </div>
-
 {% endblock %}

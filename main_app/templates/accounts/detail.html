@@ -2,7 +2,7 @@
 
 {% extends 'base.html' %} {% block content %}
 
-<div class="page-top">
+<div class="page-top mb-3">
   <div class="card shadow" style="width: auto;">
     <img src="{{current_user.profile.photo}}" class="card-img-top shadow" alt="user selected headshot">
     <div class="card-body shadow">
@@ -67,10 +67,10 @@
                 </table>
             {% endfor %} 
             {% else %}
-            <h4>
-              Go <a href="{% url 'apps_create' %}">Create Some App Ideas</a> or
+            <p>
+              Nothing on their docket, go <a href="{% url 'apps_create' %}">Create Some App Ideas</a> or
               <a href="{% url 'apps_index' %}">Steal Some Ideas From Other Coders!</a>
-            </h4>
+            </p>
             {% endif %}
             </div>
           </div>
