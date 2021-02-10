@@ -22,18 +22,6 @@ class Technologie(models.Model):
     class Meta:
         ordering: ['name']
 
-
-# BUILD_STATUS = (
-#     ('B', 'Built'),
-#     ('NB', 'Not Built')
-# )
-
-#  # build_stat = models.CharField(
-#     #     max_length=2,
-#     #     choices=BUILD_STATUS,
-#     #     default=BUILD_STATUS[1][0]
-#     # )
-
 class App(models.Model):
     creator = models.IntegerField()
     name = models.CharField(max_length=100)
