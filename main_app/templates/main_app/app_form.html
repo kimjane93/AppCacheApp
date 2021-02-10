@@ -1,10 +1,12 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %} {% if
-object %}
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %} 
+{% block content %} 
+{% if object %}
 <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
 {% else %}
 <h1>Create An App Idea</h1>
 {% endif %}
-<div>
+<div class="card-body shadow">
   <form action="" method="post">
     {% csrf_token %}
     <div>

@@ -20,14 +20,6 @@ main {
     justify-content: center;
 }
 
-.card-list-users {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
 .card-list>div {
     margin: 5%;
 }

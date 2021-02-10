@@ -39,6 +39,7 @@
                     <tr>
                       <th>App</th>
                       <th>Coders Building It</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -60,9 +61,9 @@
                         >
                       </td>
                     </tr>
+                    {% endfor %}
                   </tbody>
-                </table>
-            {% endfor %} 
+                </table> 
             {% else %}
             <h4>
               Go <a href="{% url 'apps_create' %}">Create Some App Ideas</a> or
