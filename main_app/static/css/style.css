@@ -8,14 +8,14 @@ body {
     background-color: #E7E5FA;
   }
   
-  main {
+main {
     flex: 1 0 auto;
   }
-
 
 .card-list {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
@@ -105,4 +105,14 @@ margin-top: 10px;
 
 #app-title {
   font-size: 25px;
+}
+
+.card-header {
+  text-align: center;
+  background-color: #9F95EC;
+  font-size: 25px;
+}
+
+.btn {
+  margin-bottom: 3%;
 }
