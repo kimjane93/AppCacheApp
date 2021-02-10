@@ -2,53 +2,53 @@
 
 {% block content %}
 <div class="page-top card shadow">
-<h1>App Ideas</h1>
-<span>Don't see one that speaks to you? Go <a href="{% url 'apps_create' %}">Create An App!</a></span>
-<hr>
-<form action="{% url 'apps_search' %}" method="get">
-    <div class="btn-group shadow">
-        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Tech Filter
-        </button>
-        <ol class="dropdown-menu dropdown-menu-dark scrollable-menu shadow" role="menu" style="height: auto;max-height: 180px; overflow-x: hidden;" aria-labelledby="dropdownMenuButton2">
-    {% for tech in tech.all %}
-    <li class="dropdown-item">
-    {{tech.name}}
-    <input type="checkbox" name="q" value="{{tech.id}}">
-</li>
-    {% endfor %}
-    </ol>
-    <button type="submit" class="btn btn-secondary">Search Apps</button>
-</form>
+    <h1>App Ideas</h1>
+    <span>Don't see one that speaks to you? Go <a href="{% url 'apps_create' %}">Create An App!</a></span>
+    <hr>
+    <form action="{% url 'apps_search' %}" method="get">
+        <div class="btn-group shadow">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tech Filter
+            </button>
+            <ol class="dropdown-menu dropdown-menu-dark scrollable-menu shadow" role="menu" style="height: auto;max-height: 180px; overflow-x: hidden;" aria-labelledby="dropdownMenuButton2">
+        {% for tech in tech.all %}
+        <li class="dropdown-item">
+        {{tech.name}}
+        <input type="checkbox" name="q" value="{{tech.id}}">
+    </li>
+        {% endfor %}
+            </ol>
+            <button type="submit" class="btn btn-secondary">Search Apps</button>
+    </form>
 </div>
 
 {% if apps.count %}
 <div class="card-list">
     {% for app in apps %}
-        <div class="card border-light shadow rounded">
+    <div class="card border-light shadow mb-5 rounded">
             <div class="card-header shadow">{{ app.name }}</div>
         <div class="card-body">
         </div>
         <div class="card-body">
-        <form action="{% url 'apps_detail' app.id %}">
-            <button type="submit" class="btn btn-secondary shadow">Details</button>
-        </form>
-        {% if app in apps_you_dont_have.all %}
-      <form action="{% url 'assoc_user' app.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-secondary shadow">
-                Add To List!
-            </button>
-        </form> 
-        {% else %}
-        <p class="shadow alert">You Have This On Your Build List</p>
-        {% endif %}
+            <form action="{% url 'apps_detail' app.id %}">
+                <button type="submit" class="btn btn-secondary shadow">Details</button>
+            </form>
+            {% if app in apps_you_dont_have.all %}
+        <form action="{% url 'assoc_user' app.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary shadow">
+                    Add To List!
+                </button>
+            </form> 
+            {% else %}
+            <p class="shadow alert">You Have This On Your Build List</p>
+            {% endif %}
     </div>
-    </div>
+</div>
     {% endfor %}
 </div>
 {% else %}
-<div>
+<div class="card-body">
     You've collected all current app ideas in the App Cache, go build some!
 </div>
 {% endif %}
